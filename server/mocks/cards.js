@@ -1,34 +1,34 @@
 module.exports = function(app) {
-  var express = require('express');
-  var cardsRouter = express.Router();
+  const express = require('express');
+  const cardsRouter = express.Router();
 
-  cardsRouter.get('/', function(req, res) {
+  cardsRouter.get('/', (req, res) => {
     res.send({
-      'cards': []
+      cards: [],
     });
   });
 
-  cardsRouter.post('/', function(req, res) {
+  cardsRouter.post('/', (req, res) => {
     res.status(201).end();
   });
 
-  cardsRouter.get('/:id', function(req, res) {
+  cardsRouter.get('/:id', (req, res) => {
     res.send({
-      'cards': {
-        id: req.params.id
-      }
+      cards: {
+        id: req.params.id,
+      },
     });
   });
 
-  cardsRouter.put('/:id', function(req, res) {
+  cardsRouter.put('/:id', (req, res) => {
     res.send({
-      'cards': {
-        id: req.params.id
-      }
+      cards: {
+        id: req.params.id,
+      },
     });
   });
 
-  cardsRouter.delete('/:id', function(req, res) {
+  cardsRouter.delete('/:id', (req, res) => {
     res.status(204).end();
   });
 

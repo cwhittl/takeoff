@@ -1,9 +1,8 @@
 import Ember from 'ember';
+import { computed, get } from '@ember/object';
 
-const get = Ember.get;
 const {
   Component,
-  computed
 } = Ember;
 
 export default Component.extend({
@@ -12,7 +11,7 @@ export default Component.extend({
       const pageId = get(this, 'pageId');
 
       return `${pageId}.tar.gz`;
-    }
+    },
   }),
 
   tarballUrl: computed('pageId', {
@@ -20,6 +19,6 @@ export default Component.extend({
       const pageId = get(this, 'pageId');
 
       return `/tarball/${pageId}.tar.gz`;
-    }
-  })
+    },
+  }),
 });

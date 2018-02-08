@@ -1,17 +1,15 @@
-import Ember from 'ember';
+import { get, set } from '@ember/object';
 import Route from '../../basic/route';
-
-const set = Ember.set;
 
 export default Route.extend({
   breadCrumb: null,
 
   afterModel(model) {
-    const title = `Viewing: ${model.get('title')}`;
+    const title = `Viewing: ${get(model, 'title')}`;
 
     set(this, 'breadCrumb', {
       title,
-      iconName: 'url-black'
+      iconName: 'url-black',
     });
-  }
+  },
 });

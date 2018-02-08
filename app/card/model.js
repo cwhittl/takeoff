@@ -2,7 +2,7 @@ import DS from 'ember-data';
 import Slot from '../slot/model';
 
 const {
-  attr
+  attr,
 } = DS;
 
 export default Slot.extend({
@@ -11,5 +11,5 @@ export default Slot.extend({
   description: attr('string'),
   thumbnail: attr('string'),
   position: attr('number'),
-  options: attr('object')
+  options: attr('object'),
 });

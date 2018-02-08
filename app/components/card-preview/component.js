@@ -1,16 +1,10 @@
-import Ember from 'ember';
-
-const get = Ember.get;
-const {
-  Component,
-  computed
-} = Ember;
-
-const { htmlSafe } = Ember.String;
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
+import { htmlSafe } from '@ember/string';
 
 export default Component.extend({
-  classNames: [ 'previewCard' ],
-  attributeBindings: [ 'style' ],
+  classNames: ['previewCard'],
+  attributeBindings: ['style'],
 
   style: computed('card.imageUrl', {
     get() {
@@ -18,12 +12,12 @@ export default Component.extend({
       const safeImageUrl = htmlSafe(`background: url('${imageUrl}')`);
 
       return safeImageUrl;
-    }
+    },
   }),
 
   actions: {
     remove(id) {
       this.sendAction('remove', id);
-    }
-  }
+    },
+  },
 });

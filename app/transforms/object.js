@@ -1,27 +1,18 @@
-import Ember from 'ember';
-import DS from 'ember-data';
-
-const {
-  Transform
-} = DS;
-const {
-  $
-} = Ember;
+import { Transform } from 'ember-data';
+import _$ from 'jquery';
 
 export default Transform.extend({
   deserialize(value) {
-    if (!$.isPlainObject(value)) {
+    if (!_$.isPlainObject(value)) {
       return {};
-    } else {
-      return value;
     }
+    return value;
   },
 
   serialize(value) {
     if (!$.isPlainObject(value)) {
       return {};
-    } else {
-      return value;
     }
-  }
+    return value;
+  },
 });

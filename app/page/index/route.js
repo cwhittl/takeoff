@@ -1,26 +1,23 @@
 import Ember from 'ember';
-import Route from '../../basic/route';
+import { get, set } from '@ember/object';
 import UUID from 'UUID';
 
-const get = Ember.get;
-const set = Ember.set;
+import Route from '../../basic/route';
+
 const {
-  inject
+  inject,
 } = Ember;
 
 export default Route.extend({
   sidebarManager: inject.service(),
-
+  breadCrumb: {
+    title: 'Home',
+    iconName: 'avatar',
+  },
   beforeModel() {
     const sidebarManager = get(this, 'sidebarManager');
     set(sidebarManager, 'currentSideBar', 'instructions-side-bar');
   },
-
-  breadCrumb: {
-    title: 'Home',
-    iconName: 'avatar'
-  },
-
   actions: {
     toggleModal() {
       this.controller.toggleProperty('isShowingModal');
@@ -36,7 +33,7 @@ export default Route.extend({
         templateId,
         id: UUID.generate(),
         title: 'Untitled page',
-        imageUrl: `/assets/images/template-${templateId}.svg`
+        imageUrl: `/assets/images/template-${templateId}.svg`,
       });
 
       page.save().then(() => {
@@ -46,6 +43,6 @@ export default Route.extend({
       }).finally(() => {
         this.send('closeModal');
       });
-    }
-  }
+    },
+  },
 });

@@ -1,10 +1,5 @@
-import DS from 'ember-data';
-
-const {
-  Model,
-  belongsTo
-} = DS;
+import { Model, belongsTo } from 'ember-data';
 
 export default Model.extend({
-  page: belongsTo('page', { polymorphic: true })
+  page: belongsTo('page', { polymorphic: true }),
 });

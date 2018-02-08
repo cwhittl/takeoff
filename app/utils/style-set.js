@@ -1,29 +1,11 @@
-import Ember from 'ember';
-
-const {
-  Handlebars,
-  EnumerableUtils,
-  keys: objectKeys
-} = Ember;
-
-const {
-  map
-} = EnumerableUtils;
-
-const {
-  escapeExpression
-} = Handlebars.Utils;
-
-const {
-  htmlSafe
-} = Ember.String;
+import { htmlSafe } from '@ember/string';
 
 export default function styleSet(options = {}) {
-  const styles = map(objectKeys(options), (key) => {
+  const styles = Object.keys(options).map((key) => {
     return `${key}:${options[key]};`;
   });
 
-  const stylesString = escapeExpression(styles.join(''));
+  const stylesString = styles.join('');
 
   return htmlSafe(stylesString);
 }

@@ -1,32 +1,19 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
 
-const get = Ember.get;
-
-const {
-  Component,
-  Handlebars,
-  computed
-} = Ember;
-
-const {
-  escapeExpression
-} = Handlebars.Utils;
-
-const {
-  htmlSafe
-} = Ember.String;
+import { htmlSafe } from '@ember/string';
 
 export default Component.extend({
   tagName: 'svg',
-  attributeBindings: [ 'viewBox', 'width', 'height' ],
+  attributeBindings: ['viewBox', 'width', 'height'],
 
   href: computed('src', 'anchor', {
     get() {
       const src = get(this, 'src');
       const anchor = get(this, 'anchor');
-      const escapedHref = escapeExpression(`${src}#${anchor}`);
+      const escapedHref = `${src}#${anchor}`;
 
       return htmlSafe(escapedHref);
-    }
-  })
+    },
+  }),
 });

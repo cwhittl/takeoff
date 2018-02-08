@@ -1,5 +1,5 @@
 {{#if isShowingModal}}
-  {{#modal-dialog alignment="none" translucentOverlay=true container-class="pageEditModal" close="closeModal"}}
+  {{#modal-dialog alignment="none" translucentOverlay=true containerClass="pageEditModal" onClose="closeModal"}}
     <div class="pageEditModal__header">
       <div class="pageEditModal__header__thumbnail">
         <img src={{editedCard.thumbnail}} alt={{editedCard.name}}>

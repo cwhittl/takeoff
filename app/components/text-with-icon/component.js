@@ -1,10 +1,5 @@
-import Ember from 'ember';
-
-const get = Ember.get;
-const {
-  Component,
-  computed
-} = Ember;
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
 
 export default Component.extend({
   tagName: 'span',
@@ -14,7 +9,7 @@ export default Component.extend({
       const iconName = get(this, 'iconName');
 
       return `icon icon-${iconName}`;
-    }
+    },
   }),
 
   iconPath: computed('iconName', {
@@ -22,6 +17,6 @@ export default Component.extend({
       const iconName = get(this, 'iconName');
 
       return `assets/images/icon-${iconName}.svg`;
-    }
-  })
+    },
+  }),
 });

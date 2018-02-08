@@ -1,14 +1,9 @@
-import Ember from 'ember';
-
-const get = Ember.get;
-const {
-  Component,
-  computed
-} = Ember;
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
 
 export default Component.extend({
-  classNames: [ 'templateSlot' ],
-  classNameBindings: [ 'hasCard:has-card' ],
+  classNames: ['templateSlot'],
+  classNameBindings: ['hasCard:has-card'],
   hasCard: computed.bool('card'),
 
   click() {
@@ -20,5 +15,5 @@ export default Component.extend({
     } else {
       this.sendAction('sendPosition', position);
     }
-  }
+  },
 });

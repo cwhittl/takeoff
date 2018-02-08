@@ -1,11 +1,10 @@
-import Ember from 'ember';
+import { get, set } from '@ember/object';
 import Route from '../basic/route';
 
-const get = Ember.get;
 
 export default Route.extend({
   model() {
-    return this.store.find('page');
+    return this.store.findAll('page');
   },
 
   actions: {
@@ -13,22 +12,22 @@ export default Route.extend({
       const flashMessages = get(this, 'flashMessages');
 
       this.store.findById('page', id)
-      .then((page) => {
-        page.destroyRecord();
-      })
-      .then(() => {
-        flashMessages.success('Page removed successfully');
-      })
-      .catch((error) => {
-        flashMessages.danger(error);
-      });
+        .then((page) => {
+          page.destroyRecord();
+        })
+        .then(() => {
+          flashMessages.success('Page removed successfully');
+        })
+        .catch((error) => {
+          flashMessages.danger(error);
+        });
     },
 
     addCard(card) {
       const currentPageModel = this.modelFor('page.edit');
       const newCard = this.store.createRecord('card', card);
 
-      newCard.set('page', currentPageModel);
+      set(newCard, 'page', currentPageModel);
       return newCard.save();
     },
 
@@ -37,6 +36,6 @@ export default Route.extend({
       flashMessages.info('Select a slot');
       this.controllerFor('page.edit').toggleProperty('isSelectingSlot');
       this.controllerFor('page.edit').set('selectedCard', card);
-    }
-  }
+    },
+  },
 });

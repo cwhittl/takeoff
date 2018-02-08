@@ -11,7 +11,7 @@ export default Route.extend({
 
     set(this, 'breadCrumb', {
       title,
-      iconName: 'download-black'
+      iconName: 'download-black',
     });
-  }
+  },
 });

@@ -3,12 +3,12 @@ import Ember from 'ember';
 const {
   Controller,
   inject,
-  computed
+  computed,
 } = Ember;
 
 export default Controller.extend({
   application: inject.controller(),
   sidebarManager: inject.service(),
 
-  currentSideBar: computed.alias('sidebarManager.currentSideBar')
+  currentSideBar: computed.alias('sidebarManager.currentSideBar'),
 });

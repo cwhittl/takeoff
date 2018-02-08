@@ -1,10 +1,9 @@
 import Ember from 'ember';
+import { get, set } from '@ember/object';
 
-const get = Ember.get;
-const set = Ember.set;
 const {
   Controller,
-  setProperties
+  setProperties,
 } = Ember;
 
 export default Controller.extend({
@@ -32,29 +31,29 @@ export default Controller.extend({
       newCard.save().then(() => {
         flashMessages.success(`Added ${name} to slot ${position}`);
       })
-      .catch(() => {
-        flashMessages.danger('Something went wrong!');
-      }).finally(() => {
-        this.resetEditor();
-      });
+        .catch(() => {
+          flashMessages.danger('Something went wrong!');
+        }).finally(() => {
+          this.resetEditor();
+        });
     },
 
     editCard(card) {
       setProperties(this, {
         isShowingModal: true,
-        editedCard: card
+        editedCard: card,
       });
     },
 
     closeModal() {
       set(this, 'isShowingModal', false);
-    }
+    },
   },
 
   resetEditor() {
     setProperties(this, {
       isSelectingSlot: false,
-      selectedCard: null
+      selectedCard: null,
     });
-  }
+  },
 });

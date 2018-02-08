@@ -1,22 +1,14 @@
 import Ember from 'ember';
+import { computed, getWithDefault } from '@ember/object';
 
-const get = Ember.get;
 const {
-  EnumerableUtils,
   Component,
-  computed,
-  getWithDefault
 } = Ember;
-
-const {
-  map,
-  filter
-} = EnumerableUtils;
 
 export default Component.extend({
   routeHierarchy: computed('currentRouteName', {
     get() {
-      const container = get(this, 'container');
+      const container = Ember.getOwner(this);
       const currentRouteName = getWithDefault(this, 'currentRouteName', '');
 
       if (currentRouteName === '') {
@@ -25,11 +17,11 @@ export default Component.extend({
 
       const routeNames = currentRouteName.split('.');
 
-      const filteredRouteNames = filter(routeNames, (name) => {
+      const filteredRouteNames = routeNames.filter((name) => {
         return name !== 'index';
       });
 
-      return map(filteredRouteNames, (name, index) => {
+      return filteredRouteNames.map((name, index) => {
         let path;
         const routes = routeNames.slice(0, index + 1);
 
@@ -40,12 +32,12 @@ export default Component.extend({
         }
 
         const routeObject = container.lookup(`route:${path}`);
-        const breadCrumb = routeObject.getWithDefault('breadCrumb', {});
+        const breadCrumb = getWithDefault(routeObject, 'breadCrumb', {});
         const title = getWithDefault(breadCrumb, 'title', name);
         const iconName = getWithDefault(breadCrumb, 'iconName', null);
 
         return { path, title, iconName };
       });
-    }
-  })
+    },
+  }),
 });

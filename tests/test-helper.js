@@ -1,4 +1,6 @@
 import resolver from './helpers/resolver';
+import './helpers/flash-message';
+
 import flashMessageHelper from './helpers/flash-message';
 
 import {
